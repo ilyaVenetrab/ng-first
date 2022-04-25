@@ -1,4 +1,4 @@
-# Angular Course Class Work Starter
+# Angular Course First Work Starter
 
 [Angular CLI](https://github.com/angular/angular-cli) version 12.2.4
 

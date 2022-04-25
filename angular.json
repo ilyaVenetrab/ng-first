@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "project-ngx-classwork-starter": {
+    "project-ng-first-starter": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "ngx-course",
+      "prefix": "ng-first",
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
@@ -21,7 +21,7 @@
               "path": "./webpack.partial.js",
               "replaceDuplicatePlugins": true
             },
-            "outputPath": "dist/project-ngx-classwork-starter",
+            "outputPath": "dist/project-ng-first-starter",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "project-ngx-classwork-starter:build:production"
+              "browserTarget": "project-ng-first-starter:build:production"
             },
             "development": {
-              "browserTarget": "project-ngx-classwork-starter:build:development"
+              "browserTarget": "project-ng-first-starter:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "project-ngx-classwork-starter:build"
+            "browserTarget": "project-ng-first-starter:build"
           }
         },
         "test": {
@@ -117,7 +117,7 @@
       }
     }
   },
-  "defaultProject": "project-ngx-classwork-starter",
+  "defaultProject": "project-ng-first-starter",
   "cli": {
     "defaultCollection": "@angular-eslint/schematics"
   }
