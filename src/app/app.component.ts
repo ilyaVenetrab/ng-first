@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
 	selector: 'ng-first-root',
@@ -9,18 +9,15 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class AppComponent {
 	public title = 'My App';
 
-	public span = this.domSanitizer.bypassSecurityTrustHtml(
-		`<span style="color: red;">project-ng-first-starter</span>`,
-	);
+	public text = 'Galaxy 10';
 
-	public constructor(public readonly domSanitizer: DomSanitizer) {}
+	public drawer!: MatDrawer;
 
-	public myClick(tag: SafeHtml, event: Event) {
-		console.log('myClick => ', tag);
-		console.log('myClick => event', event);
+	public changeText(text: string) {
+		this.text = text;
 	}
 
-	public toggle(myObj: any) {
-		console.log(myObj);
+	public setDrawer(drawer: MatDrawer) {
+		this.drawer = drawer;
 	}
 }
