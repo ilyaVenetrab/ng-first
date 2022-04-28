@@ -2,12 +2,34 @@
   [title]="title"
   [drawer]="drawer"
 ></ng-first-header>
+
 <ng-first-sidenav (setDrawerControl)="setDrawer($event)">
   <ng-template #contentTemp>
     <ng-first-search
       [searchTerm]="text"
       (searchTermChange)="changeText($event)"
     ></ng-first-search>
+    <mat-checkbox [checked]="onlyFavorites" (change)="setFavourites($event)">Checked</mat-checkbox>
+
+    <div
+      *ngIf="products as myProducts else loader;"
+      fxLayout="row wrap"
+      fxLayoutGap="16px grid"
+    >
+      <ng-first-product-card
+        fxFlex="25%"
+        fxFlex.sm="33%"
+        fxFlex.xs="100%"
+        *ngFor="let product of myProducts | productsFilter: text: onlyFavorites; odd as odd"
+        [product]="product"
+        [isOdd]="odd"
+      >
+      </ng-first-product-card>
+    </div>
+    <ng-template #loader>
+      <div>...loading</div>
+    </ng-template>
+
   </ng-template>
 </ng-first-sidenav>
 
