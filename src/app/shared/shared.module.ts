@@ -9,8 +9,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HiddenDirective } from './hidden/hidden.directive';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
+
+const declarations = [HiddenDirective];
 
 @NgModule({
+	declarations,
 	exports: [
 		MatToolbarModule,
 		MatIconModule,
@@ -22,6 +28,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 		MatCardModule,
 		MatCheckboxModule,
 		FlexLayoutModule,
+		...declarations,
+	],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: AuthInterceptor,
+			multi: true,
+		},
 	],
 })
 export class SharedModule {}

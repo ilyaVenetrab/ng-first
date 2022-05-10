@@ -5,6 +5,7 @@
 
 <ng-first-sidenav (setDrawerControl)="setDrawer($event)">
   <ng-template #contentTemp>
+    <ng-first-modal></ng-first-modal>
     <ng-first-search
       [searchTerm]="text"
       (searchTermChange)="changeText($event)"
@@ -12,7 +13,7 @@
     <mat-checkbox [checked]="onlyFavorites" (change)="setFavourites($event)">Checked</mat-checkbox>
 
     <div
-      *ngIf="products as myProducts else loader;"
+      *ngIf="products$ | async as myProducts else loader;"
       fxLayout="row wrap"
       fxLayoutGap="16px grid"
     >
@@ -32,4 +33,3 @@
 
   </ng-template>
 </ng-first-sidenav>
-

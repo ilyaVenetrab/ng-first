@@ -10,7 +10,12 @@
     <span>{{ title }}</span>
   </div>
 
-  <div>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="8px"
+  >
+    <ng-first-exchange-rates></ng-first-exchange-rates>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon>favorite</mat-icon>
     </button>

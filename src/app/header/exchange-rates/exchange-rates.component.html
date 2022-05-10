@@ -1,0 +1,13 @@
+<div
+  *ngFirstExchangeRates="let rate from rates; autoplay mode; delay ms; next as nextCtrl; prev as prevCtrl;"
+  (mouseenter)="prevCt.show(); nextCt.show();"
+  (mouseleave)="prevCt.hide(); nextCt.hide();"
+>
+  <button mat-button (click)="prevCtrl()" ngFirstHidden #prevCt="ngH">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+  <span>{{rate.value | currency: rate.currency : 'symbol-narrow'}}</span>
+  <button mat-button (click)="nextCtrl()" ngFirstHidden #nextCt="ngH">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+</div>
