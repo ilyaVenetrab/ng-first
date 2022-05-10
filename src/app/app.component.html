@@ -12,7 +12,7 @@
     <mat-checkbox [checked]="onlyFavorites" (change)="setFavourites($event)">Checked</mat-checkbox>
 
     <div
-      *ngIf="products as myProducts else loader;"
+      *ngIf="products$ | async as myProducts else loader;"
       fxLayout="row wrap"
       fxLayoutGap="16px grid"
     >
