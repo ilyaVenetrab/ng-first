@@ -12,6 +12,9 @@ import { ExchangeRatesComponent } from './header/exchange-rates/exchange-rates.c
 import { ExchangeRatesDirective } from './header/exchange-rates/exchange-rates.directive';
 import { ProductService } from './product.service';
 import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { BASE_URL } from './tokens';
+import { ModalModule } from './modal/modal.module';
 
 @NgModule({
 	declarations: [
@@ -24,8 +27,14 @@ import { HttpClientModule } from '@angular/common/http';
 		ExchangeRatesComponent,
 		ExchangeRatesDirective,
 	],
-	imports: [BrowserModule, BrowserAnimationsModule, SharedModule, HttpClientModule],
-	providers: [ProductService],
+	imports: [BrowserModule, BrowserAnimationsModule, SharedModule, HttpClientModule, ModalModule],
+	providers: [
+		ProductService,
+		{
+			provide: BASE_URL,
+			useValue: environment.baseUrl,
+		},
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

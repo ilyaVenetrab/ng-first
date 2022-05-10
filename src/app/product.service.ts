@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
 
 export interface IProduct {
 	_id: string;
@@ -18,11 +17,6 @@ export class ProductService {
 	}
 
 	public getProducts() {
-		return this._httpClient.get<{ data: IProduct[] }>('http://localhost:8000').pipe(
-			map((res: any) => {
-				console.log(res);
-				return res;
-			}),
-		);
+		return this._httpClient.get<IProduct[]>('');
 	}
 }
