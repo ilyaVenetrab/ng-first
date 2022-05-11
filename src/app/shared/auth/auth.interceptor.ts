@@ -7,7 +7,7 @@ import {
 	HttpResponse,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BASE_URL } from '../../tokens';
+import { BASE_URL } from '../tokens';
 import { filter, map } from 'rxjs/operators';
 
 @Injectable()
