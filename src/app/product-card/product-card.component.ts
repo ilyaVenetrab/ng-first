@@ -20,7 +20,21 @@ export class ProductCardComponent {
 		this.product.isFavorite = !isFavorite;
 	}
 
-	public addToCard(): void {
-		this._modalService.open(this.product);
+	public async addToCard() {
+		const m = await import('./product-confirm/product-confirm.component');
+		this._modalService.open({
+			component: m.ProductConfirmComponent,
+			context: {
+				product: { ...this.product },
+				add: () => {
+					console.log('add to card');
+					this._modalService.close();
+				},
+				close: () => {
+					console.log('close');
+					this._modalService.close();
+				},
+			},
+		});
 	}
 }

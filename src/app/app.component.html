@@ -5,7 +5,6 @@
 
 <ng-first-sidenav (setDrawerControl)="setDrawer($event)">
   <ng-template #contentTemp>
-    <ng-first-modal></ng-first-modal>
     <ng-first-search
       [searchTerm]="text"
       (searchTermChange)="changeText($event)"
@@ -33,3 +32,5 @@
 
   </ng-template>
 </ng-first-sidenav>
+
+<ng-first-modal></ng-first-modal>

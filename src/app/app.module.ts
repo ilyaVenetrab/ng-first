@@ -35,6 +35,7 @@ import { ModalModule } from './modal/modal.module';
 			useValue: environment.baseUrl,
 		},
 	],
+	// entryComponents: [ProductConfitmComponent],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
