@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IProduct } from '../data';
-import { ModalService } from '../modal/modal.service';
+import { ModalService } from '../../../modal/modal.service';
+import { IProduct } from '../product.service';
 
 @Component({
 	selector: 'ng-first-product-card',

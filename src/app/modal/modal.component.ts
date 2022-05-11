@@ -8,7 +8,7 @@ import {
 	ViewContainerRef,
 } from '@angular/core';
 import { IModalData, ModalService } from './modal.service';
-import { UnSubscriber } from '../unsubscribe';
+import { UnSubscriber } from '../shared/utils/unsubscribe';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
