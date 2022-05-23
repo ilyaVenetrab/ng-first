@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
+import { AuthGuard } from './shared/auth/auth.guard';
+import { PreloadService } from './preload.service';
 
 const routes: Route[] = [
 	{
@@ -10,15 +12,18 @@ const routes: Route[] = [
 	{
 		path: 'login',
 		loadChildren: () => import('./content/login/login.module').then((m) => m.LoginModule),
+		canActivate: [AuthGuard],
 	},
 	{
 		path: 'singup',
 		loadChildren: () => import('./content/singup/signup.module').then((m) => m.SignupModule),
+		canActivate: [AuthGuard],
 	},
 	{
 		path: 'dashboard',
 		loadChildren: () =>
 			import('./content/dashboard/dashboard.module').then((m) => m.DashboardModule),
+		canActivate: [AuthGuard],
 	},
 	{
 		path: '**',
@@ -27,7 +32,8 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadService })],
 	exports: [RouterModule],
+	providers: [PreloadService],
 })
 export class AppRoutingModule {}
