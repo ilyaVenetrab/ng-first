@@ -78,15 +78,47 @@ const products = [
 	},
 ];
 
-const requestListener = function (req, res) {
-	res.setHeader('Content-Type', 'application/json');
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-	res.writeHead(200);
-	res.end(JSON.stringify(products));
+const httpStatusCodes = {
+	OK: 200,
+	BAD_REQUEST: 400,
+	NOT_FOUND: 404,
+};
+
+const requestListener = function (request, response) {
+	response.setHeader('Content-Type', 'application/json');
+	response.setHeader('Access-Control-Allow-Origin', '*');
+	response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+	const url = request.url.slice('1').split('/');
+
+	if (url.length === 1 && url[0] === 'products') {
+		response.writeHead(httpStatusCodes.OK);
+		response.end(JSON.stringify(products));
+	} else if (url.length === 2 && url[0] === 'products') {
+		const product = products.filter((el) => el._id === url[1]);
+
+		if (product.length) {
+			response.writeHead(httpStatusCodes.OK);
+			response.end(JSON.stringify(product));
+		} else {
+			const badRequest = {
+				error: 'product not found',
+			};
+
+			response.writeHead(httpStatusCodes.BAD_REQUEST);
+			response.end(JSON.stringify(badRequest));
+		}
+	} else {
+		const notFound = {
+			error: 'page not found',
+		};
+
+		response.writeHead(httpStatusCodes.NOT_FOUND);
+		response.end(JSON.stringify(notFound));
+	}
 };
 
 const server = http.createServer(requestListener);
+
 server.listen(port, host, () => {
 	console.log(`Server is running on http://${host}:${port}`);
 });

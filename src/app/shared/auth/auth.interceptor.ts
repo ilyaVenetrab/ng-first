@@ -30,7 +30,6 @@ export class AuthInterceptor implements HttpInterceptor {
 					event instanceof HttpResponse,
 			),
 			map((res: HttpResponse<{ data: unknown }>) => {
-				console.log(res);
 				return res.clone({ body: res.body });
 			}),
 		);
