@@ -13,12 +13,6 @@ export class DashboardComponent {
 
 	public constructor(private _changeDetectorRef: ChangeDetectorRef) {}
 
-	/*public ngOnInit(): void {
-    this.products$.pipe(takeUntil(this.unSubscriber)).subscribe((p: IProduct[]) => {
-      this.products = p;
-    });
-  }*/
-
 	public setDrawer(drawer: MatDrawer): void {
 		this.drawer = drawer;
 		this._changeDetectorRef.detectChanges();

@@ -1,5 +1,5 @@
 <div
-  *ngFirstExchangeRates="let rate from rates; autoplay mode; delay ms; next as nextCtrl; prev as prevCtrl;"
+  *ngFirstExchangeRates="let rate from rates; autoplay as mode; delay as ms; next as nextCtrl; prev as prevCtrl;"
   (mouseenter)="prevCt.show(); nextCt.show();"
   (mouseleave)="prevCt.hide(); nextCt.hide();"
 >

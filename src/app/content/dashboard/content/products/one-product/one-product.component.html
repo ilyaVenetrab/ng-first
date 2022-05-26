@@ -1,1 +1,15 @@
-<pre>{{ product$ | async | json }}</pre>
+<div
+  *ngIf="product$ | async as myProduct else loader;"
+  fxLayout="row wrap"
+  fxLayoutGap="16px grid"
+>
+  <ng-first-product-card
+    fxFlex="100%"
+    *ngFor="let product of myProduct"
+    [product]="product"
+  >
+  </ng-first-product-card>
+</div>
+<ng-template #loader>
+  <div>...loading</div>
+</ng-template>
