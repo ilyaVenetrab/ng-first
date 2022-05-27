@@ -43,6 +43,7 @@ export class ExchangeRatesDirective implements OnInit {
 	}
 
 	private _initInterval(): void {
+		// @ts-ignore
 		this._intervalID = setInterval(() => {
 			this._next();
 		}, this.delay);

@@ -16,8 +16,11 @@ import { BASE_URL } from './tokens';
 import { environment } from '../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from './auth/auth.guard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserNameValidatorDirective } from './validators/user-name-validator.directive';
+import { ValidatorService } from './validators/validator.service';
 
-const declarations = [HiddenDirective];
+const declarations = [HiddenDirective, UserNameValidatorDirective];
 
 @NgModule({
 	declarations,
@@ -34,6 +37,8 @@ const declarations = [HiddenDirective];
 		MatCheckboxModule,
 		FlexLayoutModule,
 		HttpClientModule,
+		FormsModule,
+		ReactiveFormsModule,
 		...declarations,
 	],
 	providers: [
@@ -50,6 +55,7 @@ export class SharedModule {
 			ngModule: SharedModule,
 			providers: [
 				AuthGuard,
+				ValidatorService,
 				{
 					provide: BASE_URL,
 					useValue: environment.baseUrl,

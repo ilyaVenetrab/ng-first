@@ -9,7 +9,7 @@ import { IProduct } from '../product.service';
 	styleUrls: ['./one-product.component.css'],
 })
 export class OneProductComponent implements OnInit {
-	public product$: Observable<IProduct> = this._activatedRoute.data.pipe(pluck('product'));
+	public product$: Observable<IProduct[]> = this._activatedRoute.data.pipe(pluck('product'));
 
 	public constructor(private readonly _activatedRoute: ActivatedRoute) {}
 
@@ -21,5 +21,9 @@ export class OneProductComponent implements OnInit {
 		this._activatedRoute.params.subscribe((p) => {
 			console.log(p);
 		});
+	}
+
+	public setFavourite(): void {
+		console.log(this.product$);
 	}
 }
