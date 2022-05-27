@@ -1,0 +1,73 @@
+<div class="signup-content" [formGroup]="signUpForm">
+  <mat-card>
+    <mat-card-content>
+      <div
+        fxLayout="column"
+        fxLayoutGap="8px"
+      >
+        <p>Sung Up  Form:</p>
+        <mat-form-field>
+<!--          [formControl]="$any(signUpForm.get('username'))"-->
+          <input matInput
+                 type="text"
+                 placeholder="User Name"
+                 formControlName="username"
+          />
+          <!--<mat-error *ngIf="c.errors && c.errors['minlength']">
+            You entered {{ c.errors['minlength'].actualLength }} symbol form {{ c.errors['minlength'].requiredLength }} symbol
+          </mat-error>-->
+          <mat-error *ngIf="signUpForm.get('username')?.errors && signUpForm.get('username')?.errors?.['withoutSpecialSymbol'] as error">
+            {{ error }}
+          </mat-error>
+        </mat-form-field>
+
+        <div fxLayout="column" formGroupName="emails">
+          <div fxLayout="row" *ngFor="let c of getControls(signUpForm, 'emails'); index as i; first as f; count as length">
+            <mat-form-field fxFlex="90">
+              <input
+                matInput
+                [formControlName]="i"
+                placeholder="Email"
+              />
+            </mat-form-field>
+            <div fxFlex="10" fxLayout="row">
+              <mat-icon *ngIf="f" (click)="addEmail()">add</mat-icon>
+              <mat-icon *ngIf="length > 1" (click)="removeIndex(i)">delete</mat-icon>
+            </div>
+          </div>
+        </div>
+
+        <div formGroupName="password" fxLayout="column">
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              ngModel
+              placeholder="Password"
+              formControlName="password"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              formControlName="cpassword"
+              ngModel
+              placeholder="Confirm Password"
+            />
+          </mat-form-field>
+        </div>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="signUpForm.invalid || signUpForm.pending"
+          (click)="signup()"
+        >Sing Up</button>
+        <span (click)="goToLogin()">Go to Login</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+</div>
+
+<pre>{{ signUpForm.value | json }}</pre>

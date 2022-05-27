@@ -1,2 +1,51 @@
-<p>login works!</p>
-<span [routerLink]="['/singup']">go to singup</span>
+ <div class="signup-content">
+  <mat-card>
+    <mat-card-content>
+      <div
+        ngForm
+        #f="ngForm"
+        fxLayout="column"
+        fxLayoutGap="8px"
+      >
+        <p>Login Form:</p>
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 name="username"
+                 ngModel #c="ngModel"
+                 required
+                 minlength="4"
+                 placeholder="User Name"
+                 ngFirstUserNameValidator
+          />
+          <!--<mat-error *ngIf="c.errors && c.errors['minlength']">
+            You entered {{ c.errors['minlength'].actualLength }} symbol form {{ c.errors['minlength'].requiredLength }} symbol
+          </mat-error>-->
+          <mat-error *ngIf="c.errors && c.errors['withoutSpecialSymbol'] as error">
+            {{ error }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            name="password"
+            ngModel
+            required
+            placeholder="Password"
+          />
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="f.invalid"
+          (click)="login(f.value)"
+        >Sing Up</button>
+        <span [routerLink]="['/signup']">Go to Sing Up</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+</div>
+
+<pre>{{ f.value | json }}</pre>
