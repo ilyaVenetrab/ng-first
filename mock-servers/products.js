@@ -89,7 +89,7 @@ const requestListener = function (request, response) {
 	response.setHeader('Access-Control-Allow-Origin', '*');
 	response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 	const url = request.url.slice('1').split('/');
-
+	console.log(url);
 	if (url.length === 1 && url[0] === 'products') {
 		response.writeHead(httpStatusCodes.OK);
 		response.end(JSON.stringify(products));
@@ -107,6 +107,10 @@ const requestListener = function (request, response) {
 			response.writeHead(httpStatusCodes.BAD_REQUEST);
 			response.end(JSON.stringify(badRequest));
 		}
+		// TODO: add server logic
+	} else if (url.length === 2 && url[0] === 'auth' && url[1] === 'checkUsername') {
+		response.writeHead(httpStatusCodes.OK);
+		response.end(JSON.stringify(true));
 	} else {
 		const notFound = {
 			error: 'page not found',
