@@ -20,7 +20,10 @@
             {{ error }}
           </mat-error>
         </mat-form-field>
-
+        <div fxFlex="row" fxLayout="start center" fxLayoutGap="8px">
+          <div>Male</div>
+          <ng-first-switcher formControlName="male"></ng-first-switcher>
+        </div>
         <div fxLayout="column" formGroupName="emails">
           <div fxLayout="row" *ngFor="let c of getControls(signUpForm, 'emails'); index as i; first as f; count as length">
             <mat-form-field fxFlex="90">

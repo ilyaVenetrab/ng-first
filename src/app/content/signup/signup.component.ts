@@ -22,6 +22,7 @@ export class SignupComponent {
 				updateOn: 'blur',
 			},
 		],
+		male: [true],
 		emails: this._formBuilder.array([this._formBuilder.control('', Validators.required)]),
 		password: this._formBuilder.group(
 			{
